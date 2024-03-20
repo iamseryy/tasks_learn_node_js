@@ -1,2 +1,4 @@
-# tasks_learn_node_js
-tasks_learn_node_js
+# Основы Node.js
+| № | **Task**                                                                | **Description**                                        |
+|---|-------------------------------------------------------------------------|--------------------------------------------------------|
+| 1 | **[Task1](https://github.com/iamseryy/tasks_learn_node_js/tree/main/task1)** | Введение в Node.js |
