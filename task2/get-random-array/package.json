@@ -1,0 +1,24 @@
+{
+  "name": "get-random-array",
+  "version": "1.0.3",
+  "description": "Simple utils to create a random string array or number array",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sergei Perminov",
+  "license": "MIT",
+  "dependencies": {
+    "lorem": "^0.4.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamseryy/get-random-array.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iamseryy/get-random-array/issues"
+  },
+  "homepage": "https://github.com/iamseryy/get-random-array#readme"
+}

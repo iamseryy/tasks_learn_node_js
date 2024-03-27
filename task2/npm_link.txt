@@ -1,0 +1,1 @@
+https://www.npmjs.com/package/get-random-array?activeTab=readme
