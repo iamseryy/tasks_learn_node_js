@@ -1,24 +1,28 @@
-const express = require("express")
-const path = require("path")
+const express = require('express')
+const path = require('path')
+const handlebars = require('handlebars')
+const { engine } = require('express-handlebars')
+const { readCount } = require("./service/service");
+
 const app = express()
 const PORT = 8989
-const rootPageCounter = 99
-// app.use(express.static(path.join(__dirname, "..", "build")));
 
+app.use(express.static('public'))
 
-app.use(express.static("public"))
-app.set('myvar', 'My Site')
-app.get("/about", function (req, res) {
-    var myvar = "Hello";
-    res.render("index", { myvar1: myvar }); // send the variable through render method from res.
-});
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars')
+app.set('views', './views')
 
+app.get('/', (req, res) => {
+    const counter = readCount('counter-home-page')
+    res.render('index', {title: 'Task3', counter})
+})
 
+app.get('/about', (req, res) => {
+    const counter = readCount('counter-about-page')
+    res.render('about', {title: 'Task3', counter})
+})
 
-
-// app.use((req, res, next) => {
-//     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-// });
 app.listen(PORT, () => {
     console.log(`${new Date()} INFO: server started, port: ${PORT}`)
 })
