@@ -21,5 +21,11 @@ function findAll() {
      return JSON.parse(fs.readFileSync(filepath, 'utf-8'))
 }
 
+function findById(id) {
+    if(!fs.existsSync(filepath)) throw new Error('Repository error')
+    const users = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+    const user = users.find((user) => user.id === id
+    return user
+}
 
 module.exports = {findAll}
