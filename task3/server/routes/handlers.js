@@ -1,6 +1,8 @@
-const express = require('express');
-const service = require("../service/service");
-const router = express.Router();
+const express = require('express')
+const service = require("../service/service")
+
+
+const router = express.Router()
 
 router.get('/', (req, res) => {
     const counter = service.incrementPageCounter('counter-home-page')

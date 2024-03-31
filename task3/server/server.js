@@ -1,6 +1,6 @@
 const express = require('express')
 const { engine } = require('express-handlebars')
-const routes = require('./routes/handlers');
+const routes = require('./routes/handlers')
 
 
 const server = express()

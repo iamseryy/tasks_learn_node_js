@@ -1,4 +1,4 @@
-const repository = require("../repository/repository");
+const repository = require("../repository/repository")
 
 function incrementPageCounter(page) {
     let pageCounter = repository.getPageCounter(page)
