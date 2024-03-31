@@ -6,7 +6,7 @@ const PORT = 8989
 const router = express.Router()
 
 server.use(express.json())
-router.use('/user', user)
+router.use('/users', user)
 server.use(router)
 
 server.listen(PORT, () => {

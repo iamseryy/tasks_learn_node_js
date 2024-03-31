@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const filepath = path.join(__dirname, 'counters.json')
+const filepath = path.join(__dirname, 'users.json')
 
 
 function getPageCounter(page) {
@@ -16,5 +16,10 @@ function savePageCounter(page, counter) {
     fs.writeFileSync(filepath, JSON.stringify(counters, null, 2))
 }
 
+function findAll() {
+    if(!fs.existsSync(filepath)) throw new Error('Repository error')
+     return JSON.parse(fs.readFileSync(filepath, 'utf-8'))
+}
 
-module.exports = {getPageCounter, savePageCounter}
+
+module.exports = {findAll}
