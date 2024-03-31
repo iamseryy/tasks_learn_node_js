@@ -1,20 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const e = require("express");
-const filepath = path.join(__dirname, '../repo/counters.json');
+const repository = require("../repository/repository");
 
-
-function readCount(page) {
-    fs.readFile(filepath, 'utf-8', (err, data) => {
-        if (err) {
-            console.log(err)
-        } else {
-            return JSON.parse(data)
-        }
-    })
-
-    return 9999
+function incrementPageCounter(page) {
+    let pageCounter = repository.getPageCounter(page)
+    repository.savePageCounter(page, ++pageCounter)
+    return pageCounter
 }
 
-
-module.exports = {readCount}
+module.exports = {incrementPageCounter}
