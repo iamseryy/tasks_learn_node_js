@@ -1,31 +1,53 @@
 const fs = require('fs')
 const path = require('path')
+const uuid = require('uuid')
 const filepath = path.join(__dirname, 'users.json')
 
 
-function getPageCounter(page) {
-    if(!fs.existsSync(filepath)) throw new Error('Repository error')
-    const counters = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
-    return counters[page]
+let users = ''
+
+fs.readFile(filepath, (error, data) => {
+
+    if(error) throw new Error('Repository error')
+
+    users = JSON.parse(data.toString())
+})
+
+const findAll = () => users
+
+const findById = (id) => users.find((user) => user.id === id)
+
+function add(user) {
+    const id = uuid.v4()
+
+    users.push ({
+        id: id,
+            ...user
+    })
+
+    fs.writeFileSync(filepath, JSON.stringify(users, null, 2))
+
+    return id
 }
 
-function savePageCounter(page, counter) {
-    if(!fs.existsSync(filepath)) throw new Error('Repository error')
-    const counters = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
-    counters[page] = counter
-    fs.writeFileSync(filepath, JSON.stringify(counters, null, 2))
-}
+function update(userForUpdate) {
+    const user = findById(userForUpdate.id)
 
-function findAll() {
-    if(!fs.existsSync(filepath)) throw new Error('Repository error')
-     return JSON.parse(fs.readFileSync(filepath, 'utf-8'))
-}
+    fs.writeFileSync(filepath, JSON.stringify(users, null, 2))
 
-function findById(id) {
-    if(!fs.existsSync(filepath)) throw new Error('Repository error')
-    const users = JSON.parse(fs.readFileSync(filepath, 'utf-8'))
-    const user = users.find((user) => user.id === id
     return user
 }
 
-module.exports = {findAll}
+function remove(id) {
+    const user = findById(id)
+
+    if(!user) return null
+
+    users.splice(users.indexOf(user), 1)
+    fs.writeFileSync(filepath, JSON.stringify(users, null, 2))
+
+    return user
+}
+
+
+module.exports = {findAll, findById, add, update, remove}
